@@ -7,6 +7,9 @@ namespace Inchoo\Sample01\Controller\Sub1\Sub2;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 
+/**
+ * Returns raw result with "Test list controller" content
+ */
 class ListAction implements ActionInterface
 {
     /**

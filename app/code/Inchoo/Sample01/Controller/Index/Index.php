@@ -7,6 +7,9 @@ namespace Inchoo\Sample01\Controller\Index;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 
+/**
+ * Default index controller
+ */
 class Index implements ActionInterface
 {
     /**

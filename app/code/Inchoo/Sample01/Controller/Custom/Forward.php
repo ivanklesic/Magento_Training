@@ -7,6 +7,9 @@ namespace Inchoo\Sample01\Controller\Custom;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 
+/**
+ * Forwards to index controller
+ */
 class Forward implements ActionInterface
 {
     /**

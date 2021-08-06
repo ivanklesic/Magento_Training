@@ -7,6 +7,9 @@ namespace Inchoo\Sample01\Controller\Custom;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 
+/**
+ * Redirects to old controller
+ */
 class Redirect implements ActionInterface
 {
     /**
