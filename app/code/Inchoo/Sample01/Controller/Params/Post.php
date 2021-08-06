@@ -50,11 +50,19 @@ class Post implements HttpPostActionInterface, CsrfAwareActionInterface
         return $resultJson;
     }
 
+    /**
+     * @param RequestInterface $request
+     * @return InvalidRequestException|null
+     */
     public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException
     {
         return null;
     }
 
+    /**
+     * @param RequestInterface $request
+     * @return bool|null
+     */
     public function validateForCsrf(RequestInterface $request): ?bool
     {
         return true;
