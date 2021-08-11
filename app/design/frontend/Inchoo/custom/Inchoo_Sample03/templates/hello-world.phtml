@@ -1,0 +1,9 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+
+<h3>Template block override</h3>
+
+<p><?= $block->escapeHtml(__('Translated string.')) ?></p>
+<p><?= $escaper->escapeHtml('<script>alert("new escaper")</script>') ?></p>
