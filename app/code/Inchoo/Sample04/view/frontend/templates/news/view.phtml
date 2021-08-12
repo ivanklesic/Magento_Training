@@ -1,0 +1,15 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+/** @var \Inchoo\Sample04\ViewModel\News $newsViewModel */
+$newsViewModel = $block->getData('news');
+?>
+
+<?php if ($news = $newsViewModel->getCurrentNews()) : ?>
+    <p>Created: <?= $escaper->escapeHtml($news->getData('created_at')) ?></p>
+    <p>Updated: <?= $escaper->escapeHtml($news->getData('updated_at')) ?></p>
+    <p>Content: <?= /** @noEscape */ $news->getData('content') ?></p>
+
+    <a href="<?= $escaper->escapeUrl($block->getUrl('*/*/delete', ['id' => $news->getId()])) ?>"><?= $escaper->escapeHtml(__('Delete')) ?></a>
+<?php endif; ?>

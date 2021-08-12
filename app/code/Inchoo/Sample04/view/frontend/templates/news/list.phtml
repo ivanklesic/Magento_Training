@@ -1,0 +1,25 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+/** @var \Inchoo\Sample04\ViewModel\News $newsViewModel */
+$newsViewModel = $block->getData('news');
+?>
+
+<div>
+    <?php foreach ($newsViewModel->getNewsList() as $news) : ?>
+        <p>Title: <strong><?= $escaper->escapeHtml($news->getData('title')) ?></strong></p>
+        <p>Created: <?= $escaper->escapeHtml($news->getData('created_at')) ?></p>
+        <p>Updated: <?= $escaper->escapeHtml($news->getData('updated_at')) ?></p>
+        <p>Content: <?= /** @noEscape */ $news->getData('content') ?></p>
+
+        <a href="<?= $escaper->escapeUrl($block->getUrl('*/*/view', ['id' => $news->getId()])) ?>"><?= $escaper->escapeHtml(__('View')) ?></a>
+        <a href="<?= $escaper->escapeUrl($block->getUrl('*/*/delete', ['id' => $news->getId()])) ?>"><?= $escaper->escapeHtml(__('Delete')) ?></a>
+
+        <hr>
+    <?php endforeach; ?>
+</div>
+
+<div>
+    <a class="action primary" href="<?= $escaper->escapeUrl($block->getUrl('*/*/create')) ?>"><?= $escaper->escapeHtml(__('Create New')) ?></a>
+</div>

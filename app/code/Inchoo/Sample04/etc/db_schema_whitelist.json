@@ -1,0 +1,27 @@
+{
+    "inchoo_news": {
+        "column": {
+            "entity_id": true,
+            "status": true,
+            "title": true,
+            "content": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "INCHOO_NEWS_TITLE": true
+        }
+    },
+    "inchoo_news_comment": {
+        "column": {
+            "entity_id": true,
+            "news_id": true,
+            "comment": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "INCHOO_NEWS_COMMENT_NEWS_ID_INCHOO_NEWS_ENTITY_ID": true
+        }
+    }
+}
