@@ -44,9 +44,12 @@ class News implements ArgumentInterface
     /**
      * @return Collection|NewsModel[]
      */
-    public function getNewsList(): Collection
+    public function getNewsList($getAllNews = false): Collection
     {
         $collection = $this->collectionFactory->create();
+        if($getAllNews){
+            return $collection;
+        }
         $collection->setOrder('created_at');
         $collection->setPageSize(5);
         $collection->setCurPage(1);
@@ -54,4 +57,6 @@ class News implements ArgumentInterface
 
         return $collection;
     }
+
+
 }
