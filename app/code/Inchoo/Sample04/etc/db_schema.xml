@@ -18,7 +18,7 @@
         </constraint>
     </table>
 
-    <table name="inchoo_news_comment" resource="default" engine="innodb" comment="News Table">
+    <table name="inchoo_news_comment" resource="default" engine="innodb" comment="Comment Table">
         <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
         <column xsi:type="int" name="news_id" unsigned="true" nullable="false" identity="false" comment="News Id"/>
         <column xsi:type="mediumtext" name="comment" comment="Comment"/>

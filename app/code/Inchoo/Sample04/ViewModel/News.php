@@ -48,6 +48,9 @@ class News implements ArgumentInterface
     {
         $collection = $this->collectionFactory->create();
         $collection->setOrder('created_at');
+        $collection->setPageSize(5);
+        $collection->setCurPage(1);
+        $collection->addFilter('status', true);
 
         return $collection;
     }
