@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="inchoo_sample03_index_index"/>
     <referenceContainer name="inchoo_sample03_homepage_additional">
         <block name="inchoo_sample03_additional_content" template="Inchoo_Sample03::hello-world.phtml"/>
     </referenceContainer>

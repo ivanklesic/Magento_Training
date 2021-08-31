@@ -6,13 +6,11 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <container name="inchoo_sample03_weight_container">
-                <block name="inchoo_sample03_weight" template="Inchoo_Sample03::custom/weight.phtml">
-                    <arguments>
-                        <argument name="view_model" xsi:type="object">Inchoo\Sample03\ViewModel\Weight</argument>
-                    </arguments>
-                </block>
-            </container>
+            <block name="inchoo_sample03_weight" template="Inchoo_Sample03::custom/weight.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Inchoo\Sample03\ViewModel\Weight</argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 </page>

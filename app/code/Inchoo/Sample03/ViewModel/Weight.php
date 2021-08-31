@@ -26,7 +26,10 @@ class Weight implements ArgumentInterface
         $this->weightUnit = $weightUnit;
     }
 
-    public function getWeightUnits()
+    /**
+     * @return array
+     */
+    public function getWeightUnits(): array
     {
         return $this->weightUnit->toOptionArray();
     }
