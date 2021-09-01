@@ -10,6 +10,8 @@ use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Message\ManagerInterface;
+use Magento\Setup\Exception;
 
 class Delete implements HttpGetActionInterface
 {
@@ -34,22 +36,30 @@ class Delete implements HttpGetActionInterface
     protected $commentFactory;
 
     /**
+     * @var ManagerInterface
+     */
+    protected $messageManager;
+
+    /**
      * View constructor.
      * @param ResultFactory $resultFactory
      * @param RequestInterface $request
      * @param CommentResource $commentResource
      * @param CommentFactory $commentFactory
+     * @param ManagerInterface $messageManager
      */
     public function __construct(
         ResultFactory $resultFactory,
         RequestInterface $request,
         CommentResource $commentResource,
-        CommentFactory $commentFactory
+        CommentFactory $commentFactory,
+        ManagerInterface $messageManager
     ) {
         $this->resultFactory = $resultFactory;
         $this->request = $request;
         $this->commentResource = $commentResource;
         $this->commentFactory = $commentFactory;
+        $this->messageManager = $messageManager;
     }
 
     /**
@@ -58,14 +68,24 @@ class Delete implements HttpGetActionInterface
      */
     public function execute()
     {
+        $resultForward = $this->resultFactory->create(ResultFactory::TYPE_FORWARD);
+
         if (!$commentId = $this->request->getParam('id')) {
-            $resultForward = $this->resultFactory->create(ResultFactory::TYPE_FORWARD);
             return $resultForward->forward('noroute');
         }
 
         $comment = $this->commentFactory->create();
-        $comment->setId($commentId);
-        $this->commentResource->delete($comment);
+        $this->commentResource->load($comment, $commentId);
+
+        if(!$comment->getId()) {
+            return $resultForward->forward('noroute');
+        }
+
+        try {
+            $this->commentResource->delete($comment);
+        } catch (Exception $exception) {
+            $this->messageManager->addErrorMessage(__('Could not delete comment.'));
+        }
 
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);

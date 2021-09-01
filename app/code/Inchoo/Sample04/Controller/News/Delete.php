@@ -6,11 +6,13 @@ namespace Inchoo\Sample04\Controller\News;
 
 use Inchoo\Sample04\Model\NewsFactory;
 use Inchoo\Sample04\Model\ResourceModel\News as NewsResource;
+use Magento\Framework\Message\ManagerInterface;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Registry;
 use Magento\Framework\Controller\Result\Redirect;
+use Magento\Setup\Exception;
 
 class Delete implements HttpGetActionInterface
 {
@@ -35,23 +37,30 @@ class Delete implements HttpGetActionInterface
     protected $newsFactory;
 
     /**
+     * @var ManagerInterface
+     */
+    protected $messageManager;
+
+    /**
      * View constructor.
      * @param ResultFactory $resultFactory
      * @param RequestInterface $request
      * @param NewsResource $newsResource
      * @param NewsFactory $newsFactory
-     * @param Registry $registry
+     * @param ManagerInterface $messageManager
      */
     public function __construct(
         ResultFactory $resultFactory,
         RequestInterface $request,
         NewsResource $newsResource,
-        NewsFactory $newsFactory
+        NewsFactory $newsFactory,
+        ManagerInterface $messageManager
     ) {
         $this->resultFactory = $resultFactory;
         $this->request = $request;
         $this->newsResource = $newsResource;
         $this->newsFactory = $newsFactory;
+        $this->messageManager = $messageManager;
     }
 
     /**
@@ -60,14 +69,23 @@ class Delete implements HttpGetActionInterface
      */
     public function execute()
     {
+        $resultForward = $this->resultFactory->create(ResultFactory::TYPE_FORWARD);
         if (!$newsId = $this->request->getParam('id')) {
-            $resultForward = $this->resultFactory->create(ResultFactory::TYPE_FORWARD);
             return $resultForward->forward('noroute');
         }
 
         $news = $this->newsFactory->create();
-        $news->setId($newsId);
-        $this->newsResource->delete($news);
+        $this->newsResource->load($news, $newsId);
+
+        if (!$news->getId()) {
+            return $resultForward->forward('noroute');
+        }
+
+        try {
+            $this->newsResource->delete($news);
+        } catch (Exception $exception) {
+            $this->messageManager->addErrorMessage(__('Could not delete news.'));
+        }
 
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);

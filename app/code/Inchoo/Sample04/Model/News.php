@@ -11,7 +11,7 @@ class News extends AbstractModel
     /**
      * @return void
      */
-    protected function _construct() // notice one underscore in method name
+    protected function _construct()
     {
         $this->_init(\Inchoo\Sample04\Model\ResourceModel\News::class);
     }

@@ -64,7 +64,6 @@ class View implements HttpGetActionInterface
         $comment = $this->commentFactory->create();
         $this->commentResource->load($comment, $commentId);
 
-        // non existing entity_id value means that model isn't loaded
         if (!$comment->getEntityId()) {
             $resultForward = $this->resultFactory->create(ResultFactory::TYPE_FORWARD);
             return $resultForward->forward('noroute');
@@ -73,6 +72,10 @@ class View implements HttpGetActionInterface
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         $resultPage->getConfig()->getTitle()->set($comment->getComment());
 
-        return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+        $block = $resultPage->getLayout()->getBlock('inchoo_sample04_comment_view');
+
+        $block->setData('comment', $comment);
+
+        return $resultPage;
     }
 }

@@ -6,11 +6,13 @@ namespace Inchoo\Sample04\Controller\Comment;
 
 use Inchoo\Sample04\Model\CommentFactory;
 use Inchoo\Sample04\Model\ResourceModel\Comment as CommentResource;
+use Inchoo\Sample04\Model\ResourceModel\News as NewsResource;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Math\Random;
 use Magento\Framework\Message\ManagerInterface;
+use Inchoo\Sample04\Model\NewsFactory;
 
 class Create implements HttpGetActionInterface
 {
@@ -40,9 +42,19 @@ class Create implements HttpGetActionInterface
     protected $commentFactory;
 
     /**
+     * @var NewsFactory
+     */
+    protected $newsFactory;
+
+    /**
      * @var RequestInterface
      */
     protected $request;
+
+    /**
+     * @var NewsResource
+     */
+    protected $newsResource;
 
     /**
      * Create constructor.
@@ -50,8 +62,10 @@ class Create implements HttpGetActionInterface
      * @param Random $random
      * @param ManagerInterface $messageManager
      * @param CommentResource $commentResource
-     * @param CommentFactory $commentFactory,
+     * @param CommentFactory $commentFactory
      * @param RequestInterface $request
+     * @param NewsResource $newsResource
+     * @param NewsFactory $newsFactory
      */
     public function __construct(
         ResultFactory $resultFactory,
@@ -59,7 +73,9 @@ class Create implements HttpGetActionInterface
         ManagerInterface $messageManager,
         CommentResource $commentResource,
         CommentFactory $commentFactory,
-        RequestInterface $request
+        RequestInterface $request,
+        NewsResource $newsResource,
+        NewsFactory $newsFactory
     ) {
         $this->resultFactory = $resultFactory;
         $this->random = $random;
@@ -67,6 +83,8 @@ class Create implements HttpGetActionInterface
         $this->commentResource = $commentResource;
         $this->commentFactory = $commentFactory;
         $this->request = $request;
+        $this->newsResource = $newsResource;
+        $this->newsFactory = $newsFactory;
     }
 
     /**
@@ -74,8 +92,16 @@ class Create implements HttpGetActionInterface
      */
     public function execute()
     {
+        $resultForward = $this->resultFactory->create(ResultFactory::TYPE_FORWARD);
+
         if (!$newsId = $this->request->getParam('id')) {
-            $resultForward = $this->resultFactory->create(ResultFactory::TYPE_FORWARD);
+            return $resultForward->forward('noroute');
+        }
+
+        $news = $this->newsFactory->create();
+        $this->newsResource->load($news, $newsId);
+
+        if(!$news->getId()) {
             return $resultForward->forward('noroute');
         }
 
@@ -88,6 +114,7 @@ class Create implements HttpGetActionInterface
             $this->messageManager->addErrorMessage(__('Could not create a random string.'));
             return $resultRedirect;
         }
+
 
         $comment = $this->commentFactory->create();
         $comment->setComment($randomContent);

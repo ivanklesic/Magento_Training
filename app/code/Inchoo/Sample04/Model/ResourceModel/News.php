@@ -11,7 +11,7 @@ class News extends AbstractDb
     /**
      * @return void
      */
-    protected function _construct() // notice one underscore in method name
+    protected function _construct()
     {
         $this->_init('inchoo_news', 'entity_id');
     }

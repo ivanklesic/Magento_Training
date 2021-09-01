@@ -63,18 +63,20 @@ class InitialCommentData implements DataPatchInterface
      */
     public function apply()
     {
-        $newsCollection = $this->newsViewModel->getNewsList(true);
         $data = [];
+        $query = $this->moduleDataSetup->getConnection()->select()
+            ->from('inchoo_news', ['entity_id']);
 
-        foreach($newsCollection as $newsItem) {
+        $newsIds = $query->query()->fetchAll();
+
+        foreach($newsIds as $newsId) {
             for ($i = 1; $i <= 5; $i++) {
                 $data[] = [
-                    'news_id'   => $newsItem->getId(),
+                    'news_id'   => $newsId['entity_id'],
                     'comment'  => $this->random->getRandomString(64)
                 ];
             }
         }
-
 
         $tableName = $this->moduleDataSetup->getTable('inchoo_news_comment');
 

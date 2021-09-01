@@ -11,7 +11,7 @@ class Collection extends AbstractCollection
     /**
      * @return void
      */
-    protected function _construct() // notice one underscore in method name
+    protected function _construct()
     {
         $this->_init(
             \Inchoo\Sample04\Model\Comment::class,

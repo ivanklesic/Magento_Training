@@ -20,13 +20,13 @@
 
     <table name="inchoo_news_comment" resource="default" engine="innodb" comment="Comment Table">
         <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
-        <column xsi:type="int" name="news_id" unsigned="true" nullable="false" identity="false" comment="News Id"/>
+        <column xsi:type="int" name="news_id" unsigned="true" nullable="false" comment="News Id"/>
         <column xsi:type="mediumtext" name="comment" comment="Comment"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>
         <constraint
-            xsi:type="foreign" referenceId="INCHOO_NEWS_ID"
+            xsi:type="foreign" referenceId="INCHOO_NEWS_COMMENT_NEWS_ID_INCHOO_NEWS_ENTITY_ID"
             table="inchoo_news_comment" column="news_id"
             referenceTable="inchoo_news" referenceColumn="entity_id" onDelete="CASCADE"
         />
