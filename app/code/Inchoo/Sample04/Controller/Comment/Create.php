@@ -106,7 +106,7 @@ class Create implements HttpGetActionInterface
         }
 
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $resultRedirect->setPath('sample04/news/view/id/' . $newsId);
+        $resultRedirect->setPath('sample04/news/view/', ['id' => $newsId]);
 
         try {
             $randomContent = $this->random->getRandomString(64);
