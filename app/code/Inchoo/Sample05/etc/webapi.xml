@@ -25,4 +25,10 @@
             <resource ref="Magento_Backend::admin"/><!-- only administrator authorized/integrator for "Magento_Backend::admin" resource can access this endpoint -->
         </resources>
     </route>
+    <route url="/V1/events/:id" method="DELETE">
+        <service class="Inchoo\Sample05\Api\EventRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
 </routes>

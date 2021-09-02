@@ -3,4 +3,5 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Inchoo\Sample05\Api\Data\EventSearchResultInterface" type="Inchoo\Sample05\Model\EventSearchResult"/>
     <preference for="Inchoo\Sample05\Api\EventRepositoryInterface" type="Inchoo\Sample05\Model\EventRepository"/>
+    <preference for="Inchoo\Sample05\Api\Data\EventInterface" type="Inchoo\Sample05\Model\Event"/>
 </config>
