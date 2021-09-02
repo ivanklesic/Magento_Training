@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">postcode_form.postcode_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Postcode</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back">
+                <label translate="true">Back</label>
+                <url path="*/*/grid"/>
+                <class>back</class>
+            </button>
+            <button name="delete" class="Inchoo\Sample06\Ui\Component\Form\Control\PostcodeDeleteButton"/>
+            <button name="reset">
+                <label translate="true">Reset</label>
+                <class>reset</class>
+            </button>
+            <button name="save">
+                <label translate="true">Save</label>
+                <class>save primary</class>
+            </button>
+        </buttons>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>postcode_form.postcode_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="postcode_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="Inchoo\Sample06\Ui\DataProvider\PostcodeFormDataProvider" name="postcode_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label/>
+        </settings>
+        <field name="entity_id" formElement="input" sortOrder="5">
+            <settings>
+                <label translate="true">ID</label>
+                <disabled>true</disabled>
+            </settings>
+        </field>
+        <field name="code" formElement="input" sortOrder="10">
+            <settings>
+                <label translate="true">Code</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="country" formElement="select" sortOrder="15">
+            <settings>
+                <label translate="true">Country</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Directory\Model\Config\Source\Country"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="created_at" formElement="input" sortOrder="25">
+            <settings>
+                <label translate="true">Created</label>
+                <disabled>true</disabled>
+            </settings>
+        </field>
+        <field name="updated_at" formElement="input" sortOrder="26">
+            <settings>
+                <label translate="true">Modified</label>
+                <disabled>true</disabled>
+            </settings>
+        </field>
+    </fieldset>
+</form>
