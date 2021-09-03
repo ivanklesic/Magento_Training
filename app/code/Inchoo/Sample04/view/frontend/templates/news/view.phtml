@@ -1,0 +1,28 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+/** @var \Inchoo\Sample04\ViewModel\News $newsViewModel */
+$newsViewModel = $block->getData('news');
+
+/** @var \Inchoo\Sample04\ViewModel\Comment $commentViewModel */
+$commentViewModel = $block->getData('comment');
+?>
+
+<?php if ($news = $newsViewModel->getCurrentNews()) : ?>
+    <p>Created: <?= $escaper->escapeHtml($news->getData('created_at')) ?></p>
+    <p>Updated: <?= $escaper->escapeHtml($news->getData('updated_at')) ?></p>
+    <p>Content: <?= /** @noEscape */ $news->getData('content') ?></p>
+    <p>Comments:
+        <?php foreach ($commentViewModel->getCommentList($news->getId()) as $comment) : ?>
+            <p> <?= /** @noEscape */ $comment->getComment() ?>
+                <a href="<?= $escaper->escapeUrl
+                ($block->getUrl('sample04/comment/delete', ['id' => $comment->getId()])) ?>">
+                    <?= $escaper->escapeHtml(__('Delete comment')) ?></a>
+            </p>
+        <?php endforeach; ?>
+    </p>
+    <a href="<?= $escaper->escapeUrl($block->getUrl('*/*/delete', ['id' => $news->getId()])) ?>"><?= $escaper->escapeHtml(__('Delete')) ?></a>
+    <br>
+    <a href="<?= $escaper->escapeUrl($block->getUrl('*/comment/create', ['id' => $news->getId()])) ?>"><?= $escaper->escapeHtml(__('Add comment')) ?></a>
+<?php endif; ?>

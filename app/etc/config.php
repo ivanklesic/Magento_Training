@@ -309,6 +309,7 @@ return [
         'Dotdigitalgroup_Email' => 1,
         'Dotdigitalgroup_Chat' => 1,
         'Inchoo_Sample01' => 1,
+        'Inchoo_Sample04' => 1,
         'Inchoo_Sample02' => 1,
         'Inchoo_Sample05' => 1,
         'Inchoo_Sample06' => 1,

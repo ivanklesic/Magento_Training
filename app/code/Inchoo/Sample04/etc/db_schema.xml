@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="inchoo_news" resource="default" engine="innodb" comment="News Table">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <column xsi:type="tinyint" name="status" unsigned="true" nullable="false" default="0" comment="Status"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="mediumtext" name="content" comment="Content"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="INCHOO_NEWS_TITLE">
+            <column name="title"/>
+        </constraint>
+    </table>
+
+    <table name="inchoo_news_comment" resource="default" engine="innodb" comment="Comment Table">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <column xsi:type="int" name="news_id" unsigned="true" nullable="false" comment="News Id"/>
+        <column xsi:type="mediumtext" name="comment" comment="Comment"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint
+            xsi:type="foreign" referenceId="INCHOO_NEWS_COMMENT_NEWS_ID_INCHOO_NEWS_ENTITY_ID"
+            table="inchoo_news_comment" column="news_id"
+            referenceTable="inchoo_news" referenceColumn="entity_id" onDelete="CASCADE"
+        />
+    </table>
+</schema>
