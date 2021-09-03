@@ -7,7 +7,7 @@ $eventViewModel = $block->getData('event');
 ?>
 
 <div>
-    <?php foreach ($eventViewModel->getEventList() as $event) : ?>
+    <?php foreach ($eventViewModel->getEventList(5) as $event) : ?>
         <p>ID: <?= $escaper->escapeHtml($event->getEntityId()) ?></p>
         <p>Title: <strong><?= $escaper->escapeHtml($event->getTitle()) ?></strong></p>
         <?php $statusText = $event->getStatus() ? __('Enabled') : __('Disabled') ?>

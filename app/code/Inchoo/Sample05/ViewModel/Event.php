@@ -6,8 +6,11 @@ namespace Inchoo\Sample05\ViewModel;
 
 use Inchoo\Sample05\Api\Data\EventInterface;
 use Inchoo\Sample05\Api\EventRepositoryInterface;
+use Magento\Framework\Api\Filter;
+use Magento\Framework\Api\Search\FilterGroup;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 
@@ -34,22 +37,32 @@ class Event implements ArgumentInterface
     protected $searchCriteriaBuilder;
 
     /**
+     * Object manager
+     *
+     * @var ObjectManagerInterface
+     */
+    public $objectManager;
+
+    /**
      * Event constructor.
      * @param RequestInterface $request
      * @param Registry $registry
      * @param EventRepositoryInterface $eventRepository
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param ObjectManagerInterface $objectManager
      */
     public function __construct(
         RequestInterface $request,
         Registry $registry,
         EventRepositoryInterface $eventRepository,
-        SearchCriteriaBuilder $searchCriteriaBuilder
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        ObjectManagerInterface $objectManager
     ) {
         $this->request = $request;
         $this->registry = $registry;
         $this->eventRepository = $eventRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->objectManager = $objectManager;
     }
 
     /**
@@ -92,6 +105,14 @@ class Event implements ArgumentInterface
         }
 
         $searchCriteria = $this->searchCriteriaBuilder->create();
+        $searchCriteria->setPageSize($pageSize);
+
+        $filter = $this->objectManager->create(Filter::class);
+        $filter->setField('status')->setValue(true);
+        $filterGroup = $this->objectManager->create(FilterGroup::class);
+        $filterGroup->setFilters([$filter]);
+
+        $searchCriteria->setFilterGroups([$filterGroup]);
 
         return $this->eventRepository->getList($searchCriteria)->getItems();
     }

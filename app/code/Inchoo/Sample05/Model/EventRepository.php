@@ -13,6 +13,7 @@ use Inchoo\Sample05\Model\ResourceModel\Event as EventResource;
 use Inchoo\Sample05\Model\ResourceModel\Event\CollectionFactory;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -91,7 +92,13 @@ class EventRepository implements EventRepositoryInterface
      */
     public function save(EventInterface $event): EventInterface
     {
-        // TODO: Implement save() method.
+        try {
+            $this->eventResource->save($event);
+        } catch (\Exception $e) {
+            throw new CouldNotSaveException(__($e->getMessage()));
+        }
+
+        return $event;
     }
 
     /**
