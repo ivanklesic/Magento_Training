@@ -1,0 +1,17 @@
+{
+    "inchoo_event": {
+        "column": {
+            "entity_id": true,
+            "status": true,
+            "title": true,
+            "description": true,
+            "event_url": true,
+            "start_date": true,
+            "end_date": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "INCHOO_EVENT_TITLE": true
+        }
+    }
+}

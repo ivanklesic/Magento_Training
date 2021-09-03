@@ -1,0 +1,10 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+
+/** @var \Inchoo\Sample07\ViewModel\CategoryList $categoryList */
+$categoryList = $block->getData('category_list');
+?>
+
+<?php foreach ($categoryList->getCategories() as $category) : ?>
+
+<?php endforeach; ?>

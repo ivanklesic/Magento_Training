@@ -1,0 +1,8 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+
+/** @var \Inchoo\Sample06\ViewModel\HelloWorld $viewModel */
+$viewModel = $block->getData('view_model');
+?>
+
+<h1><?= $block->escapeHtml($viewModel->getTitle()) ?></h1>

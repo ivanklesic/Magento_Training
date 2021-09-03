@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/events/:id" method="GET">
+        <service class="Inchoo\Sample05\Api\EventRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="anonymous"/><!-- anyone can access this endpoint -->
+        </resources>
+    </route>
+    <route url="/V1/events" method="GET">
+        <service class="Inchoo\Sample05\Api\EventRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self"/><!-- only logged in customers can access this endpoint -->
+        </resources>
+    </route>
+    <route url="/V1/events" method="POST">
+        <service class="Inchoo\Sample05\Api\EventRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Backend::admin"/><!-- only administrator authorized/integrator for "Magento_Backend::admin" resource can access this endpoint -->
+        </resources>
+    </route>
+    <route url="/V1/events/:id" method="PUT">
+        <service class="Inchoo\Sample05\Api\EventRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Backend::admin"/><!-- only administrator authorized/integrator for "Magento_Backend::admin" resource can access this endpoint -->
+        </resources>
+    </route>
+    <route url="/V1/events/:id" method="DELETE">
+        <service class="Inchoo\Sample05\Api\EventRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+</routes>

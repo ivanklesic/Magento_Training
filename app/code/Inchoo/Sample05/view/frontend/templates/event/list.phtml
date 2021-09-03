@@ -1,0 +1,27 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+/** @var \Inchoo\Sample05\ViewModel\Event $eventViewModel */
+$eventViewModel = $block->getData('event');
+?>
+
+<div>
+    <?php foreach ($eventViewModel->getEventList(5) as $event) : ?>
+        <p>ID: <?= $escaper->escapeHtml($event->getEntityId()) ?></p>
+        <p>Title: <strong><?= $escaper->escapeHtml($event->getTitle()) ?></strong></p>
+        <?php $statusText = $event->getStatus() ? __('Enabled') : __('Disabled') ?>
+        <p>Status: <?= $escaper->escapeHtml($statusText) ?></p>
+        <p>Description: <?= /** @noEscape */ $event->getDescription() ?></p>
+        <?php if ($url = $event->getUrl()) : ?>
+            <p>URL: <a href="<?= $escaper->escapeUrl($url) ?>" target="_blank"><?= $escaper->escapeHtml($url) ?></a></p>
+        <?php endif; ?>
+        <p>Start Date: <?= $escaper->escapeHtml($event->getStartDate()) ?></p>
+        <p>End Date: <?= $escaper->escapeHtml($event->getEndDate()) ?></p>
+
+        <a href="<?= $escaper->escapeUrl($block->getUrl('sample05/event/view', ['id' => $event->getEntityId()])) ?>"><?= $escaper->escapeHtml(__('View')) ?></a>
+        <a href="<?= $escaper->escapeUrl($block->getUrl('sample05/event/delete', ['id' => $event->getEntityId()])) ?>"><?= $escaper->escapeHtml(__('Delete')) ?></a>
+
+        <hr>
+    <?php endforeach; ?>
+</div>
