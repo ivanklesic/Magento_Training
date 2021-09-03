@@ -118,7 +118,6 @@ class Create implements HttpGetActionInterface
 
         $comment = $this->commentFactory->create();
         $comment->setComment($randomContent);
-        $comment->setNewsId($newsId);
 
         try {
             $this->commentResource->save($comment);
