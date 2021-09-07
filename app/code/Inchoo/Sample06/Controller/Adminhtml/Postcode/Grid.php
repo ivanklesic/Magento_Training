@@ -13,7 +13,7 @@ class Grid extends Action implements HttpGetActionInterface
     /**
      * Authorization level of a basic admin session
      */
-    const ADMIN_RESOURCE = 'Magento_Backend::system_other_settings';
+    const ADMIN_RESOURCE = 'Inchoo_Sample06::postcode';
 
     /**
      * @return \Magento\Framework\Controller\ResultInterface

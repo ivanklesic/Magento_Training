@@ -79,6 +79,14 @@
                 </select>
             </formElements>
         </field>
+        <field name="city" formElement="input" sortOrder="20">
+            <settings>
+                <label translate="true">City</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
         <field name="created_at" formElement="input" sortOrder="25">
             <settings>
                 <label translate="true">Created</label>

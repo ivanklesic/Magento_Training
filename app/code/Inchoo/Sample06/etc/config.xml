@@ -6,7 +6,13 @@
             <hello_world>
                 <enabled>1</enabled>
                 <title>Hello, World!</title>
+                <content>Default content</content>
             </hello_world>
         </general>
+        <catalog>
+            <seo>
+                <catalog_search_meta_robots>NOINDEX,FOLLOW</catalog_search_meta_robots>
+            </seo>
+        </catalog>
     </default>
 </config>
