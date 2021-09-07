@@ -1,0 +1,23 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+/** @var \Inchoo\Sample05\ViewModel\Event $eventViewModel */
+$eventViewModel = $block->getData('event');
+?>
+
+<?php if ($event = $eventViewModel->getCurrentEvent()) : ?>
+    <p>ID: <?= $escaper->escapeHtml($event->getEntityId()) ?></p>
+    <?php $statusText = $event->getStatus() ? __('Enabled') : __('Disabled') ?>
+    <p>Status: <?= $escaper->escapeHtml($statusText) ?></p>
+    <p>Description: <?= /** @noEscape */ $event->getDescription() ?></p>
+    <?php if ($url = $event->getUrl()) : ?>
+        <p>URL: <a href="<?= $escaper->escapeUrl($url) ?>" target="_blank"><?= $escaper->escapeHtml($url) ?></a></p>
+    <?php endif; ?>
+    <p>Start Date: <?= $escaper->escapeHtml($event->getStartDate()) ?></p>
+    <p>End Date: <?= $escaper->escapeHtml($event->getEndDate()) ?></p>
+<?php endif; ?>
+
+<div>
+    <a href="<?= $escaper->escapeUrl($block->getUrl('sample05/event/list')) ?>"><?= $escaper->escapeHtml(__('Event List')) ?></a>
+</div>

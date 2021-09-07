@@ -1,0 +1,16 @@
+{
+    "inchoo_postcode": {
+        "column": {
+            "entity_id": true,
+            "code": true,
+            "country": true,
+            "city": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "INCHOO_POSTCODE_CODE_COUNTRY": true
+        }
+    }
+}
