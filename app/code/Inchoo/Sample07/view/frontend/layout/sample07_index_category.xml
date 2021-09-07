@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block name="inchoo_sample07_category_list" template="Inchoo_Sample07::catalog/category-list.phtml">
+                <arguments>
+                    <argument name="category_list" xsi:type="object">Inchoo\Sample07\ViewModel\CategoryList</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,21 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+
+/** @var \Inchoo\Sample07\ViewModel\ProductList $productList */
+$productList = $block->getData('product_list');
+?>
+
+<?php foreach ($productList->getProducts() as $product) : ?>
+    <p><?= /** @NoEscape */ __('Name') ?>: <strong><?= $block->escapeHtml($product->getName()) ?></strong></p>
+
+    <p><?= /** @NoEscape */ __('SKU') ?>: <?= $block->escapeHtml($product->getSku()) ?></p>
+
+    <p><?= /** @NoEscape */ __('Price') ?>: <?= $block->escapeHtml($product->getPrice()) ?></p>
+
+    <p><?= /** @NoEscape */ __('Is Web Exclusive') ?>: <?= $block->escapeHtml($product->getAttributeText('web_exclusive')) ?></p>
+
+    <?php $url = $block->getUrl('catalog/product/view', ['id' => $product->getId()]); ?>
+    <p><?= /** @NoEscape */ __('URL') ?>: <a href="<?= $block->escapeUrl($url) ?>"><?= $block->escapeHtml($url) ?></a></p>
+
+    <hr>
+<?php endforeach; ?>

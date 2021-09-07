@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Inchoo\Sample02\Model\Sample">
+        <arguments>
+            <argument name="someString" xsi:type="string">Inchoo</argument>
+            <argument name="someInteger" xsi:type="string">42</argument>
+            <argument name="isTrue" xsi:type="boolean">true</argument>
+            <argument name="randomArray" xsi:type="array">
+                <item name="0" xsi:type="string">zero</item>
+                <item name="1" xsi:type="string">one</item>
+                <item name="three" xsi:type="number">3</item>
+                <item name="4" xsi:type="null"/>
+                <item name="subArray" xsi:type="array">
+                    <item name="one" xsi:type="string">1</item>
+                    <item name="two" xsi:type="number">2</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="customVirtualSample" type="Inchoo\Sample02\Model\Sample">
+        <arguments>
+            <argument name="someString" xsi:type="string">AAAAAA</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Inchoo\Sample02\Controller\Di\VirtualType">
+        <arguments>
+            <argument name="sample" xsi:type="object">customVirtualSample</argument>
+        </arguments>
+    </type>
+
+    <preference for="Inchoo\Sample02\Model\Preference\DummyInterface" type="Inchoo\Sample02\Model\Preference\DummyOne" />
+    <preference for="Inchoo\Sample02\Model\Preference\DummyOne" type="Inchoo\Sample02\Model\Preference\DummyTwo" />
+
+    <type name="Inchoo\Sample02\Controller\Index\LazyLoad">
+        <arguments>
+            <argument name="storeManager" xsi:type="object">Magento\Store\Model\StoreManagerInterface\Proxy</argument>
+        </arguments>
+    </type>
+</config>

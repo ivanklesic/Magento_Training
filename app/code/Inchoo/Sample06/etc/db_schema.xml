@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="inchoo_postcode" resource="default" engine="innodb" comment="Postcode Table">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <column xsi:type="varchar" name="code" nullable="false" length="16" comment="Postcode"/>
+        <column xsi:type="varchar" name="country" nullable="false" length="2" comment="Country"/>
+        <column xsi:type="varchar" name="city" length="255" comment="City"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="INCHOO_POSTCODE_CODE_COUNTRY">
+            <column name="code"/>
+            <column name="country"/>
+        </constraint>
+    </table>
+</schema>

@@ -1,0 +1,11 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+/** @var \Inchoo\Sample04\Model\Comment $commentl */
+$comment = $block->getData('comment');
+?>
+
+<p>Content: <?= /** @noEscape */ $comment->getComment() ?></p>
+
+
