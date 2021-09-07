@@ -4,6 +4,9 @@
     <body>
         <referenceContainer name="content">
             <block name="inchoo_sample04_comment_view" template="Inchoo_Sample04::comment/view.phtml">
+                <arguments>
+                    <argument name="comment" xsi:type="object">Inchoo\Sample04\ViewModel\Comment</argument>
+                </arguments>
             </block>
         </referenceContainer>
     </body>
