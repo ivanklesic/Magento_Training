@@ -36,12 +36,6 @@ class Event implements ArgumentInterface
      */
     protected $searchCriteriaBuilder;
 
-    /**
-     * Object manager
-     *
-     * @var ObjectManagerInterface
-     */
-    public $objectManager;
 
     /**
      * Event constructor.
@@ -49,20 +43,17 @@ class Event implements ArgumentInterface
      * @param Registry $registry
      * @param EventRepositoryInterface $eventRepository
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
-     * @param ObjectManagerInterface $objectManager
      */
     public function __construct(
         RequestInterface $request,
         Registry $registry,
         EventRepositoryInterface $eventRepository,
-        SearchCriteriaBuilder $searchCriteriaBuilder,
-        ObjectManagerInterface $objectManager
+        SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
         $this->request = $request;
         $this->registry = $registry;
         $this->eventRepository = $eventRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-        $this->objectManager = $objectManager;
     }
 
     /**
@@ -104,15 +95,8 @@ class Event implements ArgumentInterface
             $this->searchCriteriaBuilder->setPageSize($pageSize);
         }
 
+        $this->searchCriteriaBuilder->addFilter('status', false);
         $searchCriteria = $this->searchCriteriaBuilder->create();
-        $searchCriteria->setPageSize($pageSize);
-
-        $filter = $this->objectManager->create(Filter::class);
-        $filter->setField('status')->setValue(true);
-        $filterGroup = $this->objectManager->create(FilterGroup::class);
-        $filterGroup->setFilters([$filter]);
-
-        $searchCriteria->setFilterGroups([$filterGroup]);
 
         return $this->eventRepository->getList($searchCriteria)->getItems();
     }
