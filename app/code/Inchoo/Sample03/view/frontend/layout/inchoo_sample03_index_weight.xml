@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Weight</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="inchoo_sample03_weight" template="Inchoo_Sample03::custom/weight.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Inchoo\Sample03\ViewModel\Weight</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

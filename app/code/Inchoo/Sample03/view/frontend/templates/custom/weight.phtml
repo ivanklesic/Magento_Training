@@ -1,0 +1,13 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+/** @var Inchoo\Sample03\ViewModel\Weight $viewModel */
+$viewModel = $block->getData('view_model');
+?>
+
+<div class="param-list">
+    <?php foreach ($viewModel->getWeightUnits() as $unit) : ?>
+        <p><?= $escaper->escapeHtml($unit['value']) ?> => <?= $escaper->escapeHtml($unit['label']) ?></p>
+    <?php endforeach; ?>
+</div>

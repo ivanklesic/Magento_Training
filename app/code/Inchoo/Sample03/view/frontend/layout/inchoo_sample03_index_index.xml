@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Homepage</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <container name="inchoo_sample03_homepage_container">
+                <block name="inchoo_sample03_homepage" template="Inchoo_Sample03::homepage.phtml">
+                    <container name="inchoo_sample03_homepage_additional"/>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

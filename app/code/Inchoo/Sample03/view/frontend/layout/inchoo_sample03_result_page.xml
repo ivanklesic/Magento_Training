@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block name="inchoo_sample03_text" class="Magento\Framework\View\Element\Text">
+                <arguments>
+                    <argument name="text" xsi:type="string"><![CDATA[<h3>Text block</h3>]]></argument>
+                </arguments>
+            </block>
+
+            <!-- If we do not specify a class, the default one is used: Magento\Framework\View\Element\Template -->
+            <block name="inchoo_sample03_template" template="Inchoo_Sample03::hello-world.phtml"/>
+
+            <!-- Custom block -->
+            <block name="inchoo_sample03_custom" class="Inchoo\Sample03\Block\Custom" template="Inchoo_Sample03::custom/block.phtml"/>
+
+            <!-- View model -->
+            <block name="inchoo_sample03_view_model" template="Inchoo_Sample03::custom/view-model.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Inchoo\Sample03\ViewModel\Custom</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
