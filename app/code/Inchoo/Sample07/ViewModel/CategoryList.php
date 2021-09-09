@@ -48,6 +48,11 @@ class CategoryList implements ArgumentInterface
         }
 
         $collection = $this->collectionFactory->create();
+        $collection->addAttributeToSelect(['name', 'custom_description', 'url']);
+        $collection->addAttributeToFilter('is_active', ['neq' => 0]);
+        $collection->addAttributeToFilter('level', 2);
+        $collection->addAttributeToSort('position');
+        $collection->setPageSize(10);
 
         $this->loadedCategoryCollection = $collection->load();
         return $this->loadedCategoryCollection;

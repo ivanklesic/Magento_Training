@@ -49,8 +49,9 @@ class ProductList implements ArgumentInterface
         }
 
         $collection = $this->collectionFactory->create();
-        $collection->addAttributeToSelect(['name', 'price', 'web_exclusive']);
+        $collection->addAttributeToSelect(['name', 'price', 'web_exclusive', 'description', 'brand']);
         $collection->addAttributeToFilter('type_id', Type::TYPE_SIMPLE);
+        $collection->addAttributeToFilter('status', true);
         $collection->addAttributeToSort('price');
         $collection->setPageSize(10);
 

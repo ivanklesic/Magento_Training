@@ -6,5 +6,10 @@ $categoryList = $block->getData('category_list');
 ?>
 
 <?php foreach ($categoryList->getCategories() as $category) : ?>
+    <p><?= /** @NoEscape */ __('Name') ?>: <strong><?= $block->escapeHtml($category->getName()) ?></strong></p>
 
+    <p><?= /** @NoEscape */ __('Custom description') ?>: <?= $category->getCustomDescription() ?></p>
+
+    <?php $url = $block->getUrl('catalog/category/view', ['id' => $category->getId()]); ?>
+    <p><?= /** @NoEscape */ __('URL') ?>: <a href="<?= $block->escapeUrl($url) ?>"><?= $block->escapeHtml($url) ?></a></p>
 <?php endforeach; ?>

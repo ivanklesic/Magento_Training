@@ -6,9 +6,14 @@ $productList = $block->getData('product_list');
 ?>
 
 <?php foreach ($productList->getProducts() as $product) : ?>
+
     <p><?= /** @NoEscape */ __('Name') ?>: <strong><?= $block->escapeHtml($product->getName()) ?></strong></p>
 
     <p><?= /** @NoEscape */ __('SKU') ?>: <?= $block->escapeHtml($product->getSku()) ?></p>
+
+    <p><?= /** @NoEscape */ __('Description') ?>: <?= $product->getDescription() ?></p>
+
+    <p><?= /** @NoEscape */ __('Brand') ?>: <?= $block->escapeHtml($product->getBrand()) ?></p>
 
     <p><?= /** @NoEscape */ __('Price') ?>: <?= $block->escapeHtml($product->getPrice()) ?></p>
 
