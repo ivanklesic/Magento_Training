@@ -9,6 +9,7 @@ use Inchoo\Sample04\Model\ResourceModel\Comment as CommentResource;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Registry;
 
 class View implements HttpGetActionInterface
 {
@@ -33,22 +34,30 @@ class View implements HttpGetActionInterface
     protected $commentFactory;
 
     /**
+     * @var Registry
+     */
+    protected $registry;
+
+    /**
      * View constructor.
      * @param ResultFactory $resultFactory
      * @param RequestInterface $request
      * @param CommentResource $commentResource
      * @param CommentFactory $commentFactory
+     * @param Registry $registry
      */
     public function __construct(
-        ResultFactory $resultFactory,
+        ResultFactory    $resultFactory,
         RequestInterface $request,
-        CommentResource $commentResource,
-        CommentFactory $commentFactory
+        CommentResource  $commentResource,
+        CommentFactory   $commentFactory,
+        Registry $registry
     ) {
         $this->resultFactory = $resultFactory;
         $this->request = $request;
         $this->commentResource = $commentResource;
         $this->commentFactory = $commentFactory;
+        $this->registry = $registry;
     }
 
     /**
@@ -72,9 +81,8 @@ class View implements HttpGetActionInterface
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         $resultPage->getConfig()->getTitle()->set($comment->getComment());
 
-        $block = $resultPage->getLayout()->getBlock('inchoo_sample04_comment_view');
 
-        $block->setData('comment', $comment);
+        $this->registry->register('current_comment', $comment);
 
         return $resultPage;
     }
