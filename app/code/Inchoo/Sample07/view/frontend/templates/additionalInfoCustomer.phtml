@@ -1,0 +1,19 @@
+<fieldset class="fieldset create account">
+    <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Additional Information') ?></span></legend>
+    <p>
+    <div class="field regulation">
+        <label for="regulation" class="label"><span><?php /* @escapeNotVerified */
+                echo __('OIB') ?></span></label>
+        <div class="control">
+            <input type="text" name="oib" id="oib" title="<?php /* @escapeNotVerified */ echo __('OIB') ?>" class="input-text" data-validate="{required:false}">
+        </div>
+    </div>
+    <div class="field regulation">
+        <label for="regulation" class="label"><span><?php /* @escapeNotVerified */
+                echo __('Mobile number') ?></span></label>
+        <div class="control">
+            <input type="text" name="mobile_number" id="mobile_number" title="<?php /* @escapeNotVerified */ echo __('Mobile number') ?>" class="input-text" data-validate="{required:false}">
+        </div>
+    </div>
+    </p>
+</fieldset>
