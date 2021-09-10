@@ -6,10 +6,8 @@ namespace Inchoo\Sample07\Setup\Patch\Data;
 
 use Magento\Customer\Api\CustomerMetadataInterface;
 use Magento\Eav\Setup\EavSetupFactory;
-use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-
 
 class UpdateOibCustomerAttribute implements DataPatchInterface
 {
@@ -41,7 +39,7 @@ class UpdateOibCustomerAttribute implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [CreateOibCustomerAttribute::class];
     }
 
     /**
