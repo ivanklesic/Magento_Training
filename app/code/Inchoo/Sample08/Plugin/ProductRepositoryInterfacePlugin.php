@@ -7,6 +7,9 @@ namespace Inchoo\Sample08\Plugin;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 
+/**
+ * Appends 'AFTER' to product name if the product is loaded with get() or getById()
+ */
 class ProductRepositoryInterfacePlugin
 {
     /**

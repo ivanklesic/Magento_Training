@@ -6,6 +6,9 @@ namespace Inchoo\Sample08\Plugin;
 
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
 
+/**
+ * Sets the $printQuery parameter to false before calling the load() method in Collection
+ */
 class CollectionPlugin
 {
     /**

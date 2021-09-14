@@ -8,6 +8,9 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * When a product entity is loaded, this observer logs its name in system.log
+ */
 class CatalogProductLoadAfterObserver implements ObserverInterface
 {
     /**
@@ -31,7 +34,7 @@ class CatalogProductLoadAfterObserver implements ObserverInterface
     public function execute(Observer $observer)
     {
         $this->logger->info('catalog_product_load_after observer', [
-            'product_name' => $observer->getEvent()->getData('data_object')->getName()
+            'product_name' => $observer->getData('product')->getName()
         ]);
     }
 }

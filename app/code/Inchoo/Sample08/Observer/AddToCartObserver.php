@@ -8,6 +8,9 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * When a product is added to cart, this observer logs its name in system.log
+ */
 class AddToCartObserver implements ObserverInterface
 {
     /**

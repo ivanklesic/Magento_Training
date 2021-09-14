@@ -8,6 +8,9 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * When a customer signs in, this observer logs his/her email in system.log
+ */
 class CustomerLoginObserver implements ObserverInterface
 {
     /**
@@ -31,7 +34,7 @@ class CustomerLoginObserver implements ObserverInterface
     public function execute(Observer $observer)
     {
         $this->logger->info('customer_login observer', [
-            'product_name' => $observer->getEvent()->getData('customer')->getEmail()
+            'customer_email' => $observer->getEvent()->getData('customer')->getEmail()
         ]);
     }
 }
