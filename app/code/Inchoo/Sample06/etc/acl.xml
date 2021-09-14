@@ -9,6 +9,11 @@
                         <resource id="Inchoo_Sample06::hello_world" title="Inchoo Hello World" translate="title" sortOrder="80"/>
                     </resource>
                 </resource>
+                <resource id="Magento_Backend::system">
+                    <resource id="Magento_Backend::system_other_settings">
+                        <resource id="Inchoo_Sample06::postcode" title="Inchoo Postcode" translate="title" sortOrder="80"/>
+                    </resource>
+                </resource>
             </resource>
         </resources>
     </acl>

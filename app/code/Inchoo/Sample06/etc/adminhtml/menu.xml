@@ -10,5 +10,14 @@
              parent="Magento_Backend::content_elements"
              action="sample06/index/index"
              resource="Inchoo_Sample06::hello_world"/>
+
+        <add id="Inchoo_Sample06::postcode_grid"
+             title="Postcode Management"
+             translate="title"
+             module="Inchoo_Sample06"
+             sortOrder="60"
+             parent="Magento_Backend::system_other_settings"
+             action="sample06/postcode/grid"
+             resource="Inchoo_Sample06::postcode"/>
     </menu>
 </config>

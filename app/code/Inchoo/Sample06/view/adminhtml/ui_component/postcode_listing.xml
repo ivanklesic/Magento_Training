@@ -39,6 +39,19 @@
         <columnsControls name="columns_controls"/>
         <paging name="listing_paging"/>
         <filters name="listing_filters"/>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="sample06/postcode/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
     </listingToolbar>
     <columns name="postcode_listing_columns">
         <selectionsColumn name="ids" sortOrder="0">
@@ -67,6 +80,12 @@
                 <options class="Magento\Directory\Model\Config\Source\Country"/>
                 <filter>select</filter>
                 <dataType>select</dataType>
+            </settings>
+        </column>
+        <column name="city" sortOrder="20">
+            <settings>
+                <label translate="true">City</label>
+                <filter>text</filter>
             </settings>
         </column>
         <column name="created_at" sortOrder="25" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">

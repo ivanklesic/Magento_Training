@@ -17,7 +17,7 @@ class Save extends Action implements HttpPostActionInterface
     /**
      * Authorization level of a basic admin session
      */
-    const ADMIN_RESOURCE = 'Magento_Backend::admin';
+    const ADMIN_RESOURCE = 'Inchoo_Sample06::postcode';
 
     /**
      * @var PostcodeRepository

@@ -44,4 +44,28 @@ class Config
             ScopeInterface::SCOPE_STORES
         );
     }
+
+    /**
+     * @return string|null
+     */
+    public function getContent(): ?string
+    {
+        return $this->scopeConfig->getValue(
+            'general/hello_world/content',
+            ScopeInterface::SCOPE_STORES
+        );
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getRobots(): ?string
+    {
+        return $this->scopeConfig->getValue(
+            'catalog/seo/catalog_search_meta_robots',
+            ScopeInterface::SCOPE_STORES
+        );
+    }
+
+
 }

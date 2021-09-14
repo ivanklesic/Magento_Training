@@ -14,7 +14,7 @@ class Delete extends Action
     /**
      * Authorization level of a basic admin session
      */
-    const ADMIN_RESOURCE = 'Magento_Backend::system_other_settings';
+    const ADMIN_RESOURCE = 'Inchoo_Sample06::postcode';
 
     /**
      * @var PostcodeRepository

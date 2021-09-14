@@ -30,4 +30,20 @@ class HelloWorld implements ArgumentInterface
     {
         return $this->config->getTitle() ?: 'Default Title';
     }
+
+    /**
+     * @return string
+     */
+    public function getContent(): string
+    {
+        return $this->config->getContent() ?: 'Default Content';
+    }
+
+    /**
+     * @return string
+     */
+    public function getRobots(): string
+    {
+        return $this->config->getRobots() ?: 'NOINDEX,FOLLOW';
+    }
 }

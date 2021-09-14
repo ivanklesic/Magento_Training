@@ -6,3 +6,5 @@ $viewModel = $block->getData('view_model');
 ?>
 
 <h1><?= $block->escapeHtml($viewModel->getTitle()) ?></h1>
+<p><?= $block->escapeHtml($viewModel->getContent()) ?></p>
+<small><?= $block->escapeHtml($viewModel->getRobots()) ?></small>
