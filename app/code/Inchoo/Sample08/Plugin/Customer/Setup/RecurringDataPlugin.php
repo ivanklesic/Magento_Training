@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Inchoo\Sample08\Plugin;
+namespace Inchoo\Sample08\Plugin\Customer\Setup;
 
 use Magento\Customer\Setup\RecurringData;
 

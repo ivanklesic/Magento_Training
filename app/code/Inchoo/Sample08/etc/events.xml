@@ -10,9 +10,6 @@
     <event name="sales_quote_add_item">
         <observer name="inchoo_sample08" instance="Inchoo\Sample08\Observer\AddToCartObserver"/>
     </event>
-    <event name="customer_login">
-        <observer name="inchoo_sample08" instance="Inchoo\Sample08\Observer\CustomerLoginObserver"/>
-    </event>
     <event name="catalog_product_load_after">
         <observer name="inchoo_sample08" instance="Inchoo\Sample08\Observer\CatalogProductLoadAfterObserver"/>
     </event>

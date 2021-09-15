@@ -4,6 +4,4 @@
     <event name="controller_action_predispatch">
         <observer name="adminnotification" disabled="true" />
     </event>
-
-    <event name="storeCheck" disabled="true"/>
 </config>
